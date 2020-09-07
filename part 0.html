@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app"></div>
+    
+    <script type="text/babel">
+        class App extends React.Component{
+            state = {
+                name: "rahul",
+                age: 21
+            }
+            handleClick = (e) => {
+                // console.log(e.target);
+                this.setState({
+                    name: "Rahul",
+                    age: 23
+                })
+                console.log(this.state)
+            }
+            handleMouseOver = (e) => {
+                console.log(e)
+            }
+            handleCopy = (e) => {
+                console.log('Try copying..')
+            }
+            render(){
+                return (
+                    <div className="app-content">
+                        <h1> Hey Ninjas</h1>
+                        <p>My name is  { this.state.name } and I'm { this.state.age } years old.</p> 
+                        <button onClick={this.handleClick}>Click Me</button>
+                        <button onMouseOver={this.handleMouseOver}>Hover Me</button>
+                        <p onCopy={this.handleCopy}>What we think, we become</p>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+
+</body>
+</html>
