@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import Todos from './Todos'
 import AddTodo from './AddTodo'
+import NavBar from './Components/NavBar';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
+import Home from './Components/Home'
+import Contact from './Components/Contact'
+import AboutUs from './Components/AboutUs'
+import Post from './Components/Post'
 
 class App extends Component {
 
@@ -28,13 +35,28 @@ class App extends Component {
     })
   }
 
+
+  ToDoContainer = (
+      <div className="todo-app container">
+            <h1 className="center blue-text">Todo's</h1>
+            <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
+            <AddTodo addTodo={this.addTodo}/>
+        </div>
+    )
+
   render(){
     return (
-      <div className="todo-app container">
-        <h1 className="center blue-text">Todo's</h1>
-        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
-        <AddTodo addTodo={this.addTodo}/>
-      </div>
+      <BrowserRouter>
+        <div>
+          <NavBar/>
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route path='/contact' component={Contact}/>
+            <Route path='/about' component={AboutUs}/>
+            <Route path='/post/:post_id' component={Post}/>
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   } 
 }
